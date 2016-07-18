@@ -41,7 +41,9 @@ app.get('/login/google/callback',
 );
 
 app.get('/profile',
-	require('connect-ensure-login').ensureLoggedIn(),
+	require('connect-ensure-login').ensureLoggedIn({
+		redirectTo: '/login/google'
+	}),
 	function (req, res) {
 		res.json(req.user);
 	}
