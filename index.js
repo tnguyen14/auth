@@ -51,14 +51,9 @@ app.get('/login/google/callback',
 	}
 );
 
-app.get('/profile',
-	require('connect-ensure-login').ensureLoggedIn({
-		redirectTo: process.env.URL + '/login/google'
-	}),
-	function (req, res) {
-		res.json(req.user);
-	}
-);
+app.get('/profile', function (req, res) {
+	res.json(req.user);
+});
 
 app.listen(process.env.PORT || 3000, function () {
 	console.log('Express is listening.');
