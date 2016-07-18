@@ -40,7 +40,9 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/login/google', passport.authenticate('google'));
+app.get('/login/google', passport.authenticate('google', {
+	scope: ['profile']
+}));
 
 app.get('/login/google/callback',
 	passport.authenticate('google', {failureRedirect: '/'}),
