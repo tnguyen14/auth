@@ -1,3 +1,4 @@
+require('dotenv').load();
 var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-google-oauth20').Strategy;
