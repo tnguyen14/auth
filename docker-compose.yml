@@ -1,6 +1,6 @@
 version: '2'
 services:
-  notes:
+  auth:
     build: .
     ports:
      - "13044:3000"
