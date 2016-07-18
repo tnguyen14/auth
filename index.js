@@ -3,6 +3,7 @@ var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-google-oauth20').Strategy;
 var cookieSession = require('cookie-session');
+var cors = require('cors');
 
 passport.use(new Strategy({
 	clientID: process.env.GOOGLE_CLIENT_ID,
@@ -23,6 +24,13 @@ passport.deserializeUser(function (obj, cb) {
 var app = express();
 
 app.set('trust proxy', 1); // trust first proxy
+
+var authorizedOrigins = process.env.AUTHORIZED_ORIGINS.split(',');
+app.use(cors({
+	origin: function (origin, callback) {
+		callback(null, authorizedOrigins.indexOf(origin) !== -1);
+	}
+}));
 
 app.use(cookieSession({
 	name: 'inspiredev_session',
