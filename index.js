@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-google-oauth20').Strategy;
+var cookieSession = require('cookie-session');
 
 passport.use(new Strategy({
 	clientID: process.env.GOOGLE_CLIENT_ID,
@@ -19,6 +20,13 @@ passport.deserializeUser(function (obj, cb) {
 });
 
 var app = express();
+
+app.set('trust proxy', 1); // trust first proxy
+
+app.use(cookieSession({
+	name: 'inspiredev_session',
+	secret: process.env.COOKIE_SECRET
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
