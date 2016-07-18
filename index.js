@@ -10,14 +10,20 @@ passport.use(new Strategy({
 	clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 	callbackURL: process.env.URL + '/login/google/callback'
 }, function (accessToken, refreshToken, profile, cb) {
+	console.log('profile');
+	console.log(profile);
 	cb(null, profile);
 }));
 
 passport.serializeUser(function (user, cb) {
+	console.log('serialize user');
+	console.log(user);
 	cb(null, user);
 });
 
 passport.deserializeUser(function (obj, cb) {
+	console.log('deserialize user');
+	console.log(obj);
 	cb(null, obj);
 });
 
@@ -52,6 +58,9 @@ app.get('/login/google/callback',
 );
 
 app.get('/profile', function (req, res) {
+	if (!req.isAuthenticated || !req.isAuthenticated()) {
+		return res.sendStatus(401);
+	}
 	res.json(req.user);
 });
 
