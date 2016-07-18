@@ -10,8 +10,6 @@ passport.use(new Strategy({
 	clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 	callbackURL: process.env.URL + '/login/google/callback'
 }, function (accessToken, refreshToken, profile, cb) {
-	console.log('profile');
-	console.log(profile);
 	cb(null, profile);
 }));
 
@@ -46,14 +44,26 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/login/google', passport.authenticate('google', {
+app.get('/login/google', function (req, res, next) {
+	if (req.query.redirect) {
+		req.session.redirect = req.query.redirect;
+	}
+	next();
+}, passport.authenticate('google', {
 	scope: ['profile']
 }));
 
 app.get('/login/google/callback',
-	passport.authenticate('google', {failureRedirect: '/'}),
+	passport.authenticate('google', {failureRedirect: '/profile'}),
 	function (req, res) {
-		res.redirect('/');
+		console.log('made it here');
+		var redirectUrl = '/profile';
+		if (req.session.redirect) {
+			redirectUrl = req.session.redirect;
+			delete req.session.redirect;
+		}
+		// res.redirect(redirectUrl);
+		res.json('OK!');
 	}
 );
 
@@ -61,7 +71,7 @@ app.get('/profile', function (req, res) {
 	if (!req.isAuthenticated || !req.isAuthenticated()) {
 		return res.sendStatus(401);
 	}
-	res.json(req.user);
+	res.sendStatus(200);
 });
 
 app.listen(process.env.PORT || 3000, function () {
