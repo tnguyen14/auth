@@ -54,16 +54,14 @@ app.get('/login/google', function (req, res, next) {
 }));
 
 app.get('/login/google/callback',
-	passport.authenticate('google', {failureRedirect: '/profile'}),
+	passport.authenticate('google', {failureRedirect: '../../profile'}),
 	function (req, res) {
-		console.log('made it here');
-		var redirectUrl = '/profile';
+		var redirectUrl = '../../profile';
 		if (req.session.redirect) {
 			redirectUrl = req.session.redirect;
 			delete req.session.redirect;
 		}
-		// res.redirect(redirectUrl);
-		res.json('OK!');
+		res.redirect(redirectUrl);
 	}
 );
 
