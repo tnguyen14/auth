@@ -36,12 +36,14 @@ var authorizedOrigins = process.env.AUTHORIZED_ORIGINS.split(',');
 app.use(cors({
 	origin: function (origin, callback) {
 		callback(null, authorizedOrigins.indexOf(origin) !== -1);
-	}
+	},
+	credentials: true
 }));
 
 app.use(cookieSession({
 	name: 'inspiredev_session',
-	secret: process.env.COOKIE_SECRET
+	secret: process.env.COOKIE_SECRET,
+	domain: process.env.COOKIE_DOMAIN
 }));
 
 app.use(passport.initialize());
