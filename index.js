@@ -10,7 +10,9 @@ passport.use(new Strategy({
 	clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 	callbackURL: process.env.URL + '/login/google/callback'
 }, function (accessToken, refreshToken, profile, cb) {
-	cb(null, profile);
+	cb(null, Object.assign({}, profile, {
+		accessToken: accessToken
+	}));
 }));
 
 passport.serializeUser(function (user, cb) {
@@ -20,7 +22,8 @@ passport.serializeUser(function (user, cb) {
 		name: user.name,
 		photos: user.photos,
 		gender: user.gender,
-		provider: user.provider
+		provider: user.provider,
+		accessToken: user.accessToken
 	});
 });
 
