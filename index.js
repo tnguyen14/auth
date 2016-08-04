@@ -14,14 +14,17 @@ passport.use(new Strategy({
 }));
 
 passport.serializeUser(function (user, cb) {
-	console.log('serialize user');
-	console.log(user);
-	cb(null, user);
+	cb(null, {
+		id: user.id,
+		displayName: user.displayName,
+		name: user.name,
+		photos: user.photos,
+		gender: user.gender,
+		provider: user.provider
+	});
 });
 
 passport.deserializeUser(function (obj, cb) {
-	console.log('deserialize user');
-	console.log(obj);
 	cb(null, obj);
 });
 
@@ -69,7 +72,7 @@ app.get('/profile', function (req, res) {
 	if (!req.isAuthenticated || !req.isAuthenticated()) {
 		return res.sendStatus(401);
 	}
-	res.sendStatus(200);
+	res.json(req.user);
 });
 
 app.listen(process.env.PORT || 3000, function () {
