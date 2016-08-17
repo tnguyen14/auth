@@ -1,6 +1,6 @@
 {
   "name": "@tridnguyen/auth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express-based authentication module with support for Google OAuth 2.0",
   "main": "lib/auth.js",
   "scripts": {
