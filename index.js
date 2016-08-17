@@ -4,6 +4,7 @@ var passport = require('passport');
 var Strategy = require('passport-google-oauth20').Strategy;
 var cookieSession = require('cookie-session');
 var cors = require('cors');
+var pick = require('lodash.pick');
 
 passport.use(new Strategy({
 	clientID: process.env.GOOGLE_CLIENT_ID,
@@ -16,15 +17,7 @@ passport.use(new Strategy({
 }));
 
 passport.serializeUser(function (user, cb) {
-	cb(null, {
-		id: user.id,
-		displayName: user.displayName,
-		name: user.name,
-		photos: user.photos,
-		gender: user.gender,
-		provider: user.provider,
-		accessToken: user.accessToken
-	});
+	cb(null, pick(user, ['id', 'displayName', 'name', 'photos', 'gender', 'provider', 'accessToken']));
 });
 
 passport.deserializeUser(function (obj, cb) {
