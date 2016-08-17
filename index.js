@@ -12,12 +12,13 @@ passport.use(new Strategy({
 	callbackURL: process.env.URL + '/login/google/callback'
 }, function (accessToken, refreshToken, profile, cb) {
 	cb(null, Object.assign({}, profile, {
-		accessToken: accessToken
+		accessToken: accessToken,
+		refreshToken: refreshToken
 	}));
 }));
 
 passport.serializeUser(function (user, cb) {
-	cb(null, pick(user, ['id', 'displayName', 'name', 'photos', 'gender', 'provider', 'accessToken']));
+	cb(null, pick(user, ['id', 'displayName', 'name', 'photos', 'gender', 'provider', 'accessToken', 'refreshToken']));
 });
 
 passport.deserializeUser(function (obj, cb) {
@@ -50,9 +51,16 @@ app.get('/login/google', function (req, res, next) {
 		req.session.redirect = req.query.redirect;
 	}
 	next();
-}, passport.authenticate('google', {
-	scope: ['profile']
-}));
+}, function (req, res, next) {
+	var opts = {
+		scope: ['profile']
+	};
+	if (req.scope) {
+		opts.scope = req.scope.split(' ');
+		opts.includeGrantedScopes = true;
+	}
+	passport.authenticate('google', opts)(req, res, next);
+});
 
 app.get('/login/google/callback',
 	passport.authenticate('google', {failureRedirect: '../../profile'}),
