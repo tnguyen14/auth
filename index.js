@@ -29,14 +29,6 @@ var app = express();
 
 app.set('trust proxy', 1); // trust first proxy
 
-var authorizedOrigins = process.env.AUTHORIZED_ORIGINS.split(',');
-app.use(cors({
-	origin: function (origin, callback) {
-		callback(null, authorizedOrigins.indexOf(origin) !== -1);
-	},
-	credentials: true
-}));
-
 app.use(cookieSession({
 	name: process.env.COOKIE_NAME,
 	secret: process.env.COOKIE_SECRET,
@@ -85,4 +77,15 @@ app.listen(process.env.PORT || 3000, function () {
 	console.log('Express is listening.');
 });
 
-module.exports = app;
+module.exports = function (opts) {
+	if (opts.cors) {
+		var authorizedOrigins = process.env.AUTHORIZED_ORIGINS.split(',');
+		app.use(cors({
+			origin: function (origin, callback) {
+				callback(null, authorizedOrigins.indexOf(origin) !== -1);
+			},
+			credentials: true
+		}));
+	}
+	return app;
+};
