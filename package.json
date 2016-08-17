@@ -7,7 +7,13 @@
     "start": "forever start index.js && forever logs -f 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["express", "auth", "passport", "google", "oauth"],
+  "keywords": [
+    "express",
+    "auth",
+    "passport",
+    "google",
+    "oauth"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/tnguyen14/auth.git"
@@ -20,15 +26,16 @@
   "homepage": "https://github.com/tnguyen14/auth#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "connect-ensure-login": "^0.1.1",
     "cookie-session": "^2.0.0-alpha.1",
     "cors": "^2.7.1",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
-    "forever": "^0.15.2",
     "level": "^1.4.0",
     "lodash.pick": "^4.3.0",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0"
+  },
+  "devDependencies": {
+    "forever": "^0.15.2"
   }
 }
