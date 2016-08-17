@@ -84,3 +84,5 @@ app.get('/profile', function (req, res) {
 app.listen(process.env.PORT || 3000, function () {
 	console.log('Express is listening.');
 });
+
+module.exports = app;
