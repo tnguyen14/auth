@@ -38,7 +38,7 @@ app.use(cors({
 }));
 
 app.use(cookieSession({
-	name: 'inspiredev_session',
+	name: process.env.COOKIE_NAME,
 	secret: process.env.COOKIE_SECRET,
 	domain: process.env.COOKIE_DOMAIN
 }));
