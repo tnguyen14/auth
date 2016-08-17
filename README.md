@@ -26,5 +26,4 @@ This module relies on a few environment variables to be set. These can be set in
 `AUTHORIZED_ORIGINS`: comma-separated list of allowed origins (see `opt.cors`).
 `GOOGLE_CLIENT_ID`: Client ID of the Google App used for authenticating with Google.
 `GOOGLE_CLIENT_SECRET`: Client secret of the Google App.
-`PORT`: port for the Node app to listen to. Defaults to `3000`.
 
