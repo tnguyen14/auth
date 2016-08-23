@@ -27,4 +27,5 @@ This module relies on a few environment variables to be set. These can be set in
 - `GOOGLE_CLIENT_ID`: Client ID of the Google App used for authenticating with Google.
 - `GOOGLE_CLIENT_SECRET`: Client secret of the Google App.
 - `AUTH_URL`: URL of the service. This value, appended with `/login/google/callback`, will be the callback URL by Google. It should be one of the "Authorized redirect URIs" configured on the Google API Console.
+- `REDIRECT_URL`: URL to redirect to once the authentication with Google is complete. Defaults to `/profile`.
 
