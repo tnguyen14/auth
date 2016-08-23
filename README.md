@@ -18,12 +18,13 @@ app.use('/auth', auth(opts));
 
 ### Environment variables
 
-This module relies on a few environment variables to be set. These can be set in a `.env` file (which is gitignored). For example, see `.env.example`.
+This module relies on a few environment variables to be set. These can be set in a `.env` file (if using the [`dotenv`](https://www.npmjs.com/package/dotenv) module).
 
-`COOKIE_NAME`: name of the cookie to set.
-`COOKIE_SECRET`: secret used to sign and verify cookie.
-`COOKIE_DOMAIN`: domain of the cookie (use something like `.mysite.com` to enable cookie for subdomains).
-`AUTHORIZED_ORIGINS`: comma-separated list of allowed origins (see `opt.cors`).
-`GOOGLE_CLIENT_ID`: Client ID of the Google App used for authenticating with Google.
-`GOOGLE_CLIENT_SECRET`: Client secret of the Google App.
+- `COOKIE_NAME`: name of the cookie to set.
+- `COOKIE_SECRET`: secret used to sign and verify cookie.
+- `COOKIE_DOMAIN`: domain of the cookie (use something like `.mysite.com` to enable cookie for subdomains).
+- `AUTHORIZED_ORIGINS`: comma-separated list of allowed origins (see `opt.cors`).
+- `GOOGLE_CLIENT_ID`: Client ID of the Google App used for authenticating with Google.
+- `GOOGLE_CLIENT_SECRET`: Client secret of the Google App.
+- `AUTH_URL`: URL of the service. This value, appended with `/login/google/callback`, will be the callback URL by Google. It should be one of the "Authorized redirect URIs" configured on the Google API Console.
 
