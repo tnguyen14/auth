@@ -34,6 +34,9 @@
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0"
   },
+  "peerDependencies": {
+    "passport": "^0.3.2"
+  },
   "devDependencies": {
     "debug": "^2.2.0",
     "forever": "^0.15.2"
