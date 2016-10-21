@@ -1,0 +1,6 @@
+Session.vim
+.env
+docker-compose.yml
+Dockerfile
+.dockerignore
+data
