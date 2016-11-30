@@ -4,7 +4,7 @@
   "description": "Express-based authentication module with support for Google OAuth 2.0",
   "main": "lib/auth.js",
   "scripts": {
-    "start": "forever start index.js && forever logs -f 0",
+    "start": "pm2 start ecosystem.config.js && pm2 logs auth",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -28,17 +28,12 @@
     "body-parser": "^1.15.2",
     "cookie-session": "^2.0.0-alpha.1",
     "cors": "^2.7.1",
+    "debug": "^2.2.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "lodash.pick": "^4.3.0",
     "passport": "^0.3.2",
-    "passport-google-oauth20": "^1.0.0"
-  },
-  "peerDependencies": {
-    "passport": "^0.3.2"
-  },
-  "devDependencies": {
-    "debug": "^2.2.0",
-    "forever": "^0.15.2"
+    "passport-google-oauth20": "^1.0.0",
+    "pm2": "^2.1.6"
   }
 }
