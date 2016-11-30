@@ -6,7 +6,8 @@ var auth = require('./lib/auth');
 app.use('/', auth({
 	cors: true
 }));
-app.listen(process.env.PORT || 3000, function () {
-	console.log('Express is listening.');
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+	console.log('Express is listening on port ' + port);
 });
 
