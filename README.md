@@ -1,5 +1,7 @@
 # Auth
 
+[![Build Status](https://travis-ci.org/tnguyen14/auth.svg?branch=master)](https://travis-ci.org/tnguyen14/auth)
+
 Express-based authentication module with support for Google OAuth 2.0. Session is backed by [`cookie-session`](https://github.com/expressjs/cookie-session), with optional support for auth across subdomains.
 
 ## Usage
