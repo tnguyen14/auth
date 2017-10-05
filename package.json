@@ -33,6 +33,7 @@
     "lodash.pick": "^4.3.0",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
+    "passport-oauth2-refresh": "^1.0.0",
     "pm2": "^2.1.6"
   },
   "devDependencies": {
