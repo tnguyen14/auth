@@ -5,7 +5,8 @@
   "main": "lib/auth.js",
   "scripts": {
     "start": "pm2 start ecosystem.config.js && pm2 logs auth",
-    "test": "mocha test/**/*.js --reporter spec"
+    "test": "mocha test/**/*.js --reporter spec",
+    "dev": "pm2 start ecosystem.config.js --watch --no-daemon"
   },
   "keywords": [
     "express",
