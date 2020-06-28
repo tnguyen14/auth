@@ -1,20 +1,10 @@
 {
   "name": "@tridnguyen/auth",
-  "version": "2.4.1",
-  "description": "Express-based authentication module with support for Google OAuth 2.0",
-  "main": "lib/auth.js",
-  "scripts": {
-    "start": "pm2 start ecosystem.config.js && pm2 logs auth",
-    "test": "mocha test/**/*.js --reporter spec",
-    "dev": "pm2 start ecosystem.config.js --watch --no-daemon"
-  },
-  "keywords": [
-    "express",
-    "auth",
-    "passport",
-    "google",
-    "oauth"
-  ],
+  "version": "3.0.0",
+  "description": "Authentication",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/tnguyen14/auth.git"
@@ -26,20 +16,8 @@
   },
   "homepage": "https://github.com/tnguyen14/auth#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "cookie-session": "^2.0.0-alpha.1",
-    "cors": "^2.7.1",
-    "debug": "^2.2.0",
-    "express": "^4.14.0",
-    "lodash.pick": "^4.3.0",
-    "passport": "^0.3.2",
-    "passport-google-oauth20": "^1.0.0",
-    "passport-oauth2-refresh": "^1.0.0",
-    "pm2": "^2.1.6"
+    "jwt-decode": "^2.2.0",
+    "lodash.pick": "^4.4.0"
   },
-  "devDependencies": {
-    "dotenv": "^2.0.0",
-    "mocha": "^3.4.2",
-    "supertest": "^3.0.0"
-  }
+  "devDependencies": {}
 }
