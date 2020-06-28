@@ -21,8 +21,6 @@
     "lodash.pick": "^4.4.0"
   },
   "browserify": {
-    "transform": [
-      "babelify"
-    ]
+    "transform": [["babelify", { "presets": ["@babel/preset-env"] }]]
   }
 }
