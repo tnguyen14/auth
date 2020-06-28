@@ -2,6 +2,7 @@
   "name": "@tridnguyen/auth",
   "version": "3.0.0",
   "description": "Authentication",
+  "type": "module",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
