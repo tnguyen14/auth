@@ -1,6 +1,7 @@
 /* global localStorage */
 import jwtDecode from 'jwt-decode';
 import pick from 'lodash.pick';
+import auth0 from 'auth0-js';
 
 // claims that are relevant
 const userClaims = [
@@ -50,3 +51,13 @@ export function getSession() {
 	// if not authenticated, remove any existing session
 	deleteSession();
 }
+
+const auth = new auth0.WebAuth({
+  domain: 'tridnguyen.auth0.com',
+  clientID: 'IxcfVZqCVF9b5FS2NVVnElOeBnoNG02Z',
+  audience: 'https://tridnguyen.auth0.com/userinfo',
+  responseType: 'token id_token',
+  scope: 'openid profile'
+});
+
+export default auth;
