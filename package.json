@@ -20,5 +20,7 @@
     "jwt-decode": "^2.2.0",
     "lodash.pick": "^4.4.0"
   },
-  "devDependencies": {}
+  "browserify": {
+    "transform": ["babelify"]
+  }
 }
