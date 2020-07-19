@@ -28,7 +28,7 @@ export function storeSession(user) {
   }
   let expiresAt = user.expiresAt;
   if (!expiresAt && user.expiresIn) {
-    expiresAt = expiresIn * 1000 + Date.now();
+    expiresAt = user.expiresIn * 1000 + Date.now();
   }
 
   localStorage.setItem("access_token", user.accessToken);
