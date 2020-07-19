@@ -23,9 +23,17 @@ function isAuthenticated(user) {
 }
 
 export function storeSession(user) {
+  if (!user.acccessToken && user.idToken) {
+    throw new Error("accessToken and idToken are required");
+  }
+  let expiresAt = user.expiresAt;
+  if (!expiresAt && user.expiresIn) {
+    expiresAt = expiresIn * 1000 + Date.now();
+  }
+
   localStorage.setItem("access_token", user.accessToken);
   localStorage.setItem("id_token", user.idToken);
-  localStorage.setItem("expires_at", JSON.stringify(user.expiresAt));
+  localStorage.setItem("expires_at", JSON.stringify(expiresAt));
 }
 
 export function deleteSession() {
@@ -52,12 +60,77 @@ export function getSession() {
   deleteSession();
 }
 
-const auth = new auth0.WebAuth({
-  domain: "tridnguyen.auth0.com",
-  clientID: "IxcfVZqCVF9b5FS2NVVnElOeBnoNG02Z",
-  audience: "https://tridnguyen.auth0.com/userinfo",
-  responseType: "token id_token",
-  scope: "openid profile",
-});
+export function createAuth(options) {
+  const scope = options.scope || "openid profile email";
+  const redirectUri = options.redirectUri || window.location.href;
 
-export default auth;
+  const auth = new auth0.WebAuth({
+    domain: "tridnguyen.auth0.com",
+    clientID: "IxcfVZqCVF9b5FS2NVVnElOeBnoNG02Z",
+    audience: "https://tridnguyen.auth0.com/userinfo",
+    responseType: "token id_token",
+    scope,
+  });
+
+  auth.silentAuth = () => {
+    auth.authorize({
+      redirectUri,
+      prompt: "none",
+    });
+  };
+
+  auth.handleCallback = (callback) => {
+    auth.parseHash((err, authResult) => {
+      if (err) {
+        if (err.error === "login_required") {
+          auth.authorize({
+            redirectUri,
+          });
+        } else {
+          if (callback) {
+            callback(err);
+          }
+        }
+        return;
+      }
+      try {
+        storeSession(authResult);
+        if (callback) {
+          callback(null, authResult);
+        }
+      } catch (e) {
+        if (callback) {
+          callback(e);
+        }
+      }
+    });
+  };
+
+  auth.renewSession = (callback) => {
+    auth.checkSession(
+      {
+        redirectUri,
+      },
+      (err, authResult) => {
+        if (err) {
+          if (callback) {
+            callback(err);
+            return;
+          }
+          try {
+            storeSession(authResult);
+            if (callback) {
+              callback(null, authResult);
+            }
+          } catch (e) {
+            if (callback) {
+              callback(e);
+            }
+          }
+        }
+      }
+    );
+  };
+
+  return auth;
+}
