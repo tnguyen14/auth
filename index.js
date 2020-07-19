@@ -63,6 +63,7 @@ export function getSession() {
 export function createAuth(options) {
   const scope = (options && options.scope) || "openid profile email";
   const redirectUri = (options && options.redirectUri) || window.location.href;
+  const basePath = (options && options.basePath) || window.location.pathname;
 
   const auth = new auth0.WebAuth({
     domain: "tridnguyen.auth0.com",
@@ -95,6 +96,12 @@ export function createAuth(options) {
       }
       try {
         storeSession(authResult);
+        /*
+         * clear out callback hash
+         * use history module once the issue is resolved
+         * https://github.com/ReactTraining/history/issues/821
+         */
+        history.replaceState(null, "", basePath);
         if (callback) {
           callback(null, authResult);
         }
