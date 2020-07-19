@@ -61,8 +61,8 @@ export function getSession() {
 }
 
 export function createAuth(options) {
-  const scope = options.scope || "openid profile email";
-  const redirectUri = options.redirectUri || window.location.href;
+  const scope = (options && options.scope) || "openid profile email";
+  const redirectUri = (options && options.redirectUri) || window.location.href;
 
   const auth = new auth0.WebAuth({
     domain: "tridnguyen.auth0.com",
