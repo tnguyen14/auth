@@ -2,7 +2,9 @@
 import jwtDecode from "jwt-decode";
 import pick from "lodash.pick";
 import auth0 from "auth0-js";
-import history from "history/browser";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 // claims that are relevant
 const userClaims = [
