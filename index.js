@@ -2,9 +2,6 @@
 import jwtDecode from "jwt-decode";
 import pick from "lodash.pick";
 import auth0 from "auth0-js";
-import { createBrowserHistory } from "history";
-
-const history = createBrowserHistory();
 
 // claims that are relevant
 const userClaims = [
@@ -108,12 +105,8 @@ export function createAuth(options) {
       }
       try {
         storeSession(authResult);
-        /*
-         * clear out callback hash
-         * use history module once the issue is resolved
-         * https://github.com/ReactTraining/history/issues/821
-         */
-        history.replace(basePath);
+        // clear out callback hash
+        history.replaceState(null, "", basePath);
         if (callback) {
           callback(null, authResult);
         }
