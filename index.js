@@ -82,7 +82,10 @@ export function createAuth(options) {
   };
 
   auth.handleCallback = (callback) => {
-    if (!window.location.hash.startsWith("#access_token")) {
+    if (
+      !window.location.hash.startsWith("#access_token") &&
+      !window.location.hash.startsWith("#error")
+    ) {
       if (callback) {
         callback();
         return;
