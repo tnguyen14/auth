@@ -117,15 +117,15 @@ export function createAuth(options) {
             callback(err);
             return;
           }
-          try {
-            storeSession(authResult);
-            if (callback) {
-              callback(null, authResult);
-            }
-          } catch (e) {
-            if (callback) {
-              callback(e);
-            }
+        }
+        try {
+          storeSession(authResult);
+          if (callback) {
+            callback(null, authResult);
+          }
+        } catch (e) {
+          if (callback) {
+            callback(e);
           }
         }
       }
