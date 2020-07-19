@@ -81,6 +81,12 @@ export function createAuth(options) {
   };
 
   auth.handleCallback = (callback) => {
+    if (!window.location.hash.startsWith("#access_token")) {
+      if (callback) {
+        callback();
+        return;
+      }
+    }
     auth.parseHash((err, authResult) => {
       if (err) {
         if (err.error === "login_required") {
