@@ -23,7 +23,7 @@ function isAuthenticated(user) {
 }
 
 export function storeSession(user) {
-  if (!user.acccessToken && user.idToken) {
+  if (!user.accessToken && user.idToken) {
     throw new Error("accessToken and idToken are required");
   }
   let expiresAt = user.expiresAt;
