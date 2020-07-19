@@ -2,6 +2,7 @@
 import jwtDecode from "jwt-decode";
 import pick from "lodash.pick";
 import auth0 from "auth0-js";
+import history from "history/browser";
 
 // claims that are relevant
 const userClaims = [
@@ -107,7 +108,7 @@ export function createAuth(options) {
          * use history module once the issue is resolved
          * https://github.com/ReactTraining/history/issues/821
          */
-        history.replaceState(null, "", basePath);
+        history.replace(basePath);
         if (callback) {
           callback(null, authResult);
         }
