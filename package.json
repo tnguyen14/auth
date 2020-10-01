@@ -4,6 +4,7 @@
   "description": "Authentication",
   "type": "module",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {},
   "keywords": [],
   "repository": {
