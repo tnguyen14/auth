@@ -18,6 +18,14 @@ auth.handleCallback((err) => {
   }
 });
 
+function login() {
+  auth.silentAuth();
+}
+
+function logout() {
+  deleteSession();
+}
+
 const session = getSession();
 /*
  * session = {
@@ -38,13 +46,5 @@ const session = getSession();
 if (!session) {
   console.log("Unauthenticated");
   login();
-}
-
-function login() {
-  auth.silentAuth();
-}
-
-function logout() {
-  deleteSession();
 }
 ```
