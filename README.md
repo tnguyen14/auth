@@ -7,6 +7,17 @@ Client-side JWT auth using local storage and Auth0 OAuth2 flow.
 ```js
 import { getSession, deleteSession, createAuth } from "@tridnguyen/auth";
 
+const auth = createAuth();
+
+auth.handleCallback((err) => {
+  if (err) {
+    console.error(err);
+    return;
+  } else {
+    console.log(getSession());
+  }
+});
+
 const session = getSession();
 /*
  * session = {
@@ -29,20 +40,9 @@ if (!session) {
   login();
 }
 
-const auth = createAuth();
-
 function login() {
   auth.silentAuth();
 }
-
-auth.handleCallback((err) => {
-  if (err) {
-    console.error(err);
-    return;
-  } else {
-    console.log(getSession());
-  }
-});
 
 function logout() {
   deleteSession();
