@@ -1,12 +1,16 @@
 {
   "name": "@tridnguyen/auth",
   "version": "5.3.0",
-  "description": "Authentication",
+  "description": "Client-side JWT auth using local storage and Auth0 OAuth2 flow.",
   "type": "module",
   "main": "index.js",
   "module": "index.js",
   "scripts": {},
-  "keywords": [],
+  "keywords": [
+    "jwt",
+    "auth0",
+    "local-storage"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/tnguyen14/auth.git"
@@ -21,18 +25,6 @@
     "auth0-js": "^9.13.2",
     "jwt-decode": "^2.2.0",
     "lodash.pick": "^4.4.0"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "@babel/preset-env"
-          ]
-        }
-      ]
-    ]
   },
   "devDependencies": {
     "husky": "^4.2.5",
