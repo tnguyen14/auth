@@ -1,6 +1,6 @@
 {
   "name": "@tridnguyen/auth",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "Client-side JWT auth using local storage and Auth0 OAuth2 flow.",
   "type": "module",
   "main": "index.js",
