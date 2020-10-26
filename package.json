@@ -9,7 +9,8 @@
   "keywords": [
     "jwt",
     "auth0",
-    "local-storage"
+    "oauth2",
+    "localstorage"
   ],
   "repository": {
     "type": "git",

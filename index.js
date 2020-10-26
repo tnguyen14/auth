@@ -93,8 +93,15 @@ export function createAuth(options) {
     auth.parseHash((err, authResult) => {
       if (err) {
         if (err.error === "login_required") {
-          auth.authorize({
-            redirectUri,
+          auth.renewSession((err) => {
+            if (err) {
+              console.error("Unable to renew session");
+              console.error(err);
+              auth.authorize({
+                redirectUri,
+              });
+              return;
+            }
           });
         } else {
           if (callback) {
