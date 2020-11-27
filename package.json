@@ -1,6 +1,6 @@
 {
   "name": "@tridnguyen/auth",
-  "version": "5.4.1",
+  "version": "5.4.2",
   "description": "Client-side JWT auth using local storage and Auth0 OAuth2 flow.",
   "type": "module",
   "main": "index.js",
@@ -42,7 +42,14 @@
   },
   "browserify": {
     "transform": [
-      ["babelify", { "presets": ["@babel/preset-env"] }]
+      [
+        "babelify",
+        {
+          "presets": [
+            "@babel/preset-env"
+          ]
+        }
+      ]
     ]
   }
 }
