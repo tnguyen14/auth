@@ -42,7 +42,7 @@
   },
   "browserify": {
     "transform": [
-      "babelify"
+      ["babelify", { "presets": ["@babel/preset-env"] }]
     ]
   }
 }
