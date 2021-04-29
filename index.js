@@ -1,21 +1,14 @@
 /* global localStorage */
 import jwtDecode from "jwt-decode";
-import pick from "lodash.pick";
 import auth0 from "auth0-js";
 
-// claims that are relevant
-const userClaims = [
-  "given_name",
-  "family_name",
-  "nickname",
-  "name",
-  "picture",
-  "sub",
-];
 // decode user info from idToken
 function getUser(idToken) {
-  const payload = jwtDecode(idToken);
-  return pick(payload, userClaims);
+  // only pick relevant claims
+  const { given_name, family_name, nickname, name, picture, sub } = jwtDecode(
+    idToken
+  );
+  return { given_name, family_name, nickname, name, picture, sub };
 }
 
 function isAuthenticated(user) {
