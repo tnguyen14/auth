@@ -1,7 +1,13 @@
-/* global localStorage */
+/* global localStorage, AsyncStorage */
 import jwtDecode from "jwt-decode";
 import auth0 from "auth0-js";
 
+let storage = localStorage;
+
+// react-native uses AsyncStorage
+if (!localStorage && AsyncStorage) {
+  storage = AsyncStorage;
+}
 // decode user info from idToken
 function getUser(idToken) {
   // only pick relevant claims
@@ -24,24 +30,24 @@ export function storeSession(user) {
     expiresAt = user.expiresIn * 1000 + Date.now();
   }
 
-  localStorage.setItem("access_token", user.accessToken);
-  localStorage.setItem("id_token", user.idToken);
-  localStorage.setItem("expires_at", JSON.stringify(expiresAt));
+  storage.setItem("access_token", user.accessToken);
+  storage.setItem("id_token", user.idToken);
+  storage.setItem("expires_at", JSON.stringify(expiresAt));
 }
 
 export function deleteSession() {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("id_token");
-  localStorage.removeItem("expires_at");
+  storage.removeItem("access_token");
+  storage.removeItem("id_token");
+  storage.removeItem("expires_at");
 }
 
 export function getSession() {
-  const expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+  const expiresAt = JSON.parse(storage.getItem("expires_at"));
   if (isAuthenticated({ expiresAt })) {
     // Auth0 example does not retrieve these tokens
     // but it seems like they should be
-    const accessToken = localStorage.getItem("access_token");
-    const idToken = localStorage.getItem("id_token");
+    const accessToken = storage.getItem("access_token");
+    const idToken = storage.getItem("id_token");
     return {
       expiresAt,
       accessToken,
