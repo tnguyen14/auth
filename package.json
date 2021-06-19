@@ -48,6 +48,7 @@
     ]
   },
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.15.0"
+    "@auth0/auth0-spa-js": "^1.15.0",
+    "simple-fetch": "^2.2.2"
   }
 }
