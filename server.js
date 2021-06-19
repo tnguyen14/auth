@@ -1,4 +1,6 @@
-import { postJson } from 'simple-fetch';
+import simpleFetch from 'simple-fetch';
+
+const { postJson } = simpleFetch;
 
 export async function getToken(options) {
   if (!options.clientId || !options.clientSecret) {
