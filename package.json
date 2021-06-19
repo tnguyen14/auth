@@ -22,10 +22,6 @@
     "url": "https://github.com/tnguyen14/auth/issues"
   },
   "homepage": "https://github.com/tnguyen14/auth#readme",
-  "dependencies": {
-    "auth0-js": "^9.13.2",
-    "jwt-decode": "^2.2.0"
-  },
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
@@ -50,5 +46,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^1.15.0"
   }
 }
