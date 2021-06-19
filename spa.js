@@ -1,6 +1,6 @@
 import createAuth0Client from 'auth0/auth0-spa-js';
 
-export function createAuth(options) {
+export async function createAuth(options) {
   if (!options.clientId) {
     throw new Error('clientId is required');
   }
