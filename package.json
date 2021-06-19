@@ -1,6 +1,6 @@
 {
   "name": "@tridnguyen/auth",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "Helper functions to work with Auth0",
   "type": "module",
   "main": "index.js",
