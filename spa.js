@@ -7,9 +7,12 @@ export default async function createAuth(options) {
   const client = await createAuth0Client({
     domain: 'tridnguyen.auth0.com',
     client_id: options.clientId,
-    redirect_uri: window.location.href,
     cacheLocation: 'localstorage',
     useRefreshTokens: true,
+    useRefreshTokensFallback: true,
+    authorizationParams: {
+      redirect_uri: window.location.href,
+    }
   });
   return client;
 }

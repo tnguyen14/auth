@@ -48,7 +48,7 @@
     ]
   },
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.15.0",
+    "@auth0/auth0-spa-js": "^2.1.2",
     "auth0": "^2.35.1",
     "debug": "^4.3.1",
     "jsonwebtoken": "^8.5.1",
