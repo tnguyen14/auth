@@ -11,7 +11,7 @@ export default async function createAuth(options) {
     useRefreshTokens: true,
     useRefreshTokensFallback: true,
     authorizationParams: {
-      redirect_uri: window.location.href,
+      ...options.authorizationParams
     }
   });
   return client;
